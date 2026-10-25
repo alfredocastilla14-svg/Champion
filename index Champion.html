@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0e">
+<title>Champion Academy · Rutina</title>
+<style>
+:root{
+  --bg:#0c0c0e; --bg2:#151518; --card:#1a1a1e; --line:#2a2a30;
+  --gold:#e8b923; --gold2:#f6d86a; --gold-dim:#8a6f14;
+  --text:#f4f4f5; --muted:#9a9aa3; --ok:#3ecf8e;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4;
+  background-image:radial-gradient(circle at 1px 1px,#1e1e22 1px,transparent 0);background-size:14px 14px;min-height:100vh;padding-bottom:70px}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+
+/* Header */
+header{padding:28px 0 18px;text-align:center;position:relative}
+header::before,header::after{content:"";position:absolute;top:18px;width:46px;height:46px;border-top:3px solid var(--gold);border-left:3px solid var(--gold);transform:rotate(-45deg);opacity:.8}
+header::before{left:-26px} header::after{right:-26px;transform:rotate(135deg)}
+.logo{width:72px;height:72px;margin:0 auto 8px;display:block}
+.logo img{width:100%;height:100%;object-fit:contain}
+.brand{letter-spacing:.14em;font-size:.78rem;color:var(--muted);text-transform:uppercase}
+.brand b{color:var(--text)}
+h1{margin:10px 0 2px;font-size:1.7rem;font-weight:800}
+h1 span{color:var(--gold)}
+.sub{color:var(--muted);font-size:.9rem}
+.meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.pill{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.78rem;color:var(--muted)}
+.pill b{color:var(--gold)}
+
+/* Day tabs */
+.tabs{position:sticky;top:0;z-index:10;background:linear-gradient(var(--bg) 80%,transparent);padding:10px 0 12px}
+.tabs-in{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.tab{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:12px;padding:8px 0;text-align:center;cursor:pointer;font:inherit;font-size:.7rem;position:relative}
+.tab strong{display:block;font-size:1.05rem;color:var(--text)}
+.tab.on{background:var(--gold);border-color:var(--gold);color:#201a00}
+.tab.on strong{color:#201a00}
+.tab.today::after{content:"";position:absolute;top:5px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.tab.on.today::after{background:#201a00}
+.tab.done{border-color:var(--ok)}
+
+/* Day header */
+.dayhead{margin:6px 0 14px}
+.dayhead h2{margin:0;font-size:1.25rem}
+.dayhead h2 small{color:var(--gold);font-weight:600;font-size:.8rem;margin-left:6px}
+.bar{height:8px;background:var(--bg2);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-dim),var(--gold),var(--gold2));transition:width .3s}
+.barlbl{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:5px}
+
+/* Circuits */
+.circ{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden}
+.circ-h{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#201a00;font-weight:800;padding:9px 16px;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between}
+.ex{padding:14px 16px;border-top:1px solid var(--line)}
+.ex:first-of-type{border-top:0}
+.ex-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ex-n{font-weight:650;font-size:1rem}
+.reps{flex:none;text-align:right;color:var(--gold);font-weight:800;font-size:.95rem;white-space:nowrap}
+.reps small{display:block;color:var(--muted);font-weight:500;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}
+.note{margin-top:6px;font-size:.8rem;color:var(--gold2);background:#2a2410;border-left:3px solid var(--gold);padding:4px 8px;border-radius:0 6px 6px 0;display:inline-block}
+.dots{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.dot{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);background:var(--bg2);color:var(--muted);font:inherit;font-weight:700;cursor:pointer;transition:.15s}
+.dot.on{background:var(--gold);border-color:var(--gold);color:#201a00;transform:scale(1.05)}
+.ex.complete .ex-n{color:var(--ok)}
+.ex.complete .ex-n::after{content:" ✓"}
+
+.cardio{border-color:var(--gold-dim)}
+.cardio .circ-h{background:var(--bg2);color:var(--gold);border-bottom:1px solid var(--gold-dim)}
+
+.rest{text-align:center;padding:40px 16px;color:var(--muted)}
+.rest b{display:block;font-size:1.3rem;color:var(--text);margin-bottom:6px}
+
+.obj{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.obj h3{margin:0 0 6px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.obj ul{margin:0;padding-left:18px;color:var(--text);font-size:.9rem}
+
+.reset{display:block;margin:10px auto 0;background:none;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:8px 14px;font:inherit;font-size:.8rem;cursor:pointer}
+.slogan{text-align:center;font-style:italic;font-weight:900;font-size:1.6rem;color:var(--gold);margin:26px 0 8px}
+
+/* Admin */
+.fab{position:fixed;right:14px;bottom:14px;background:var(--gold);color:#201a00;border:0;border-radius:999px;padding:12px 16px;font:inherit;font-weight:800;font-size:.85rem;cursor:pointer;box-shadow:0 6px 20px #0008;z-index:20}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;z-index:30}
+.modal.open{display:flex}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:20px 20px 0 0;width:100%;max-width:560px;padding:20px;max-height:88vh;overflow:auto}
+.sheet h3{margin:0 0 4px}
+.sheet p{color:var(--muted);font-size:.85rem;margin:4px 0 14px}
+.btn{display:block;width:100%;text-align:center;background:var(--bg2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px;font:inherit;font-weight:650;cursor:pointer;margin-bottom:10px}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#201a00}
+.msg{font-size:.82rem;margin-top:6px}
+.msg.err{color:#ff7a7a}.msg.ok{color:var(--ok)}
+code{background:var(--bg2);padding:1px 5px;border-radius:5px;font-size:.8rem}
+@media(min-width:600px){.modal{align-items:center}.sheet{border-radius:20px}}
+@media print{.fab,.tabs,.reset{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo" id="logo"></div>
+    <div class="brand"><b>Champion Academy</b> · MBS</div>
+    <h1 id="cliente">Programa de <span>entrenamiento</span></h1>
+    <div class="sub" id="tipo"></div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="obj" id="obj"></div>
+
+  <nav class="tabs"><div class="tabs-in" id="tabs"></div></nav>
+  <main id="day"></main>
+  <div class="slogan">Be a Champion!</div>
+</div>
+
+<button class="fab" id="fab">⚙ Rutina</button>
+<div class="modal" id="modal">
+  <div class="sheet">
+    <h3>Administrar rutina</h3>
+    <p>Carga un Excel con la rutina de otro usuario o descarga la plantilla para llenarla.</p>
+    <button class="btn" id="btnTpl">⬇ Descargar plantilla Excel (rutina actual)</button>
+    <label class="btn gold" for="file">⬆ Cargar Excel (.xlsx)</label>
+    <input type="file" id="file" accept=".xlsx,.xls,.csv" hidden>
+    <button class="btn" id="btnJson">⬇ Descargar rutina como .json (para publicar en GitHub)</button>
+    <button class="btn" id="btnClose">Cerrar</button>
+    <div class="msg" id="msg"></div>
+    <p style="margin-top:14px">Con el JSON publicado en <code>rutinas/nombre.json</code> abre la app con <code>?u=nombre</code> y verás esa rutina.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+/* ============================================================
+   DATOS POR DEFECTO (rutina de Alfredo Castillo)
+   Para otra persona: carga un Excel desde "⚙ Rutina" o publica
+   un JSON en rutinas/<nombre>.json y abre index.html?u=<nombre>
+   ============================================================ */
+const DEFAULT = {
+  cliente: "Alfredo Castillo",
+  programa: "Extremidades superiores / Piernas / Tronco",
+  tipo: "Hombro, bíceps y tríceps; piernas; pecho y espalda",
+  diasEfectivos: 6,
+  objetivos: ["Incremento de resistencia muscular", "Disminución de % de grasa corporal"],
+  bloques: [
+    { titulo: "Hombros / Bíceps / Tríceps", dias: [1,3,5], circuitos: [
+      { nombre: "Circuito 1", ejercicios: [
+        { n: "Press de hombro c/mancuerna", reps: "10 a 12", series: 4, nota: "" },
+        { n: "Elevaciones laterales con cable", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Pájaros sobre banco inclinado a 45°", reps: "12 a 15", series: 4, nota: "" } ]},
+      { nombre: "Circuito 3", ejercicios: [
+        { n: "Curl c/barra Z", reps: "10 a 12", series: 4, nota: "" },
+        { n: "Curl c/mancuerna sentado", reps: "12 a 15", series: 4, nota: "Banco inclinado 30°" },
+        { n: "Curl martillo simultáneo", reps: "12 a 15", series: 4, nota: "Mantener contracción 1s" } ]},
+      { nombre: "Circuito 4", ejercicios: [
+        { n: "Copa a dos manos c/mancuerna", reps: "10 a 12", series: 4, nota: "" },
+        { n: "Press francés barra Z", reps: "12 a 15", series: 4, nota: "Banco inclinado 60°" },
+        { n: "Extensión de tríceps c/cuerda", reps: "12 a 15", series: 4, nota: "" } ]}
+    ]},
+    { titulo: "Cuádriceps / Femorales / Glúteos y Gemelos", dias: [2,6], circuitos: [
+      { nombre: "Circuito 1", ejercicios: [
+        { n: "Sentadilla hack", reps: "10 a 12", series: 4, nota: "Posición neutra" },
+        { n: "Leg extensión", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Leg curl boca abajo", reps: "12 a 15", series: 4, nota: "" } ]},
+      { nombre: "Circuito 2", ejercicios: [
+        { n: "Prensa", reps: "12 a 15", series: 4, nota: "Posición neutra" },
+        { n: "Leg curl en silla", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Desplantes en máquina smith", reps: "10 a 12", series: 4, nota: "" } ]},
+      { nombre: "Circuito 4", ejercicios: [
+        { n: "Máquina de abducción", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Máquina de aducción", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Elevación de talones parado", reps: "15 a 20", series: 4, nota: "Cuidar alineación espalda" } ]}
+    ]},
+    { titulo: "Espalda / Pecho", dias: [4], circuitos: [
+      { nombre: "Circuito 1", ejercicios: [
+        { n: "Jalón al frente", reps: "12 a 15", series: 4, nota: "Agarre prono" },
+        { n: "Remo sentado con triángulo", reps: "12 a 15", series: 4, nota: "Agarre neutro" },
+        { n: "Pulldown c/cuerda", reps: "12 a 15", series: 4, nota: "" } ]},
+      { nombre: "Circuito 3", ejercicios: [
+        { n: "Press c/mancuerna en banco inclinado", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Fondos con agarre abierto", reps: "12 a 15", series: 4, nota: "" },
+        { n: "Cristos c/mancuerna en banco horizontal", reps: "12 a 15", series: 4, nota: "" } ]}
+    ]}
+  ],
+  cardio: [ { n: "Caminadora o elíptica o escalera", tiempo: "45 min.", nota: "Mantener ritmo medio" } ]
+};
+
+/* ---------------- Estado ---------------- */
+let R = DEFAULT;
+let selDay = 1;
+const params = new URLSearchParams(location.search);
+const USER = params.get('u') || 'default';
+const DAYS = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+const todayNum = (()=>{const d=new Date().getDay();return d===0?7:d})(); // Lun=1 … Dom=7
+const dateKey = ()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+const $ = id=>document.getElementById(id);
+const esc = s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* Progreso guardado por usuario + fecha (se reinicia solo cada día) */
+const pKey = ()=>`ca:${USER}:${dateKey()}`;
+const getP = ()=>{try{return JSON.parse(localStorage.getItem(pKey())||'{}')}catch(e){return {}}};
+const setP = p=>{try{localStorage.setItem(pKey(),JSON.stringify(p))}catch(e){}};
+
+/* ---------------- Render ---------------- */
+function bloquesDelDia(d){ return R.bloques.map((b,bi)=>({b,bi})).filter(x=>x.b.dias.includes(d)); }
+
+function renderHeader(){
+  $('cliente').innerHTML = esc(R.cliente||'Programa de entrenamiento');
+  $('tipo').textContent = R.programa||'';
+  $('meta').innerHTML =
+    (R.tipo?`<span class="pill">Programación: <b>${esc(R.tipo)}</b></span>`:'')+
+    (R.diasEfectivos?`<span class="pill">Días efectivos: <b>${esc(R.diasEfectivos)}</b>/semana</span>`:'');
+  $('obj').innerHTML = (R.objetivos&&R.objetivos.length)
+    ? `<h3>Objetivos</h3><ul>${R.objetivos.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>` : '';
+  $('obj').style.display = (R.objetivos&&R.objetivos.length)?'block':'none';
+  document.title = `Champion Academy · ${R.cliente||'Rutina'}`;
+}
+
+function renderTabs(){
+  $('tabs').innerHTML = DAYS.map((n,i)=>{
+    const d=i+1, has=bloquesDelDia(d).length>0;
+    return `<button class="tab ${d===selDay?'on':''} ${d===todayNum?'today':''}" data-d="${d}" ${has?'':'style="opacity:.55"'}>${n}<strong>${d}</strong></button>`;
+  }).join('');
+  $('tabs').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{selDay=+t.dataset.d;render()});
+}
+
+function renderDay(){
+  const bl = bloquesDelDia(selDay), P = getP();
+  let total=0, done=0, html='';
+
+  if(!bl.length){
+    html += `<div class="rest"><b>Día de descanso</b>Recuperación activa. Mantén tu cardio y tu hidratación.</div>`;
+  } else {
+    const titulos = bl.map(x=>x.b.titulo).join(' + ');
+    html += `<div class="dayhead"><h2>${esc(titulos)}<small>Día ${selDay}${selDay===todayNum?' · HOY':''}</small></h2>
+      <div class="bar"><i id="barfill"></i></div><div class="barlbl"><span id="barl"></span><span id="barp"></span></div></div>`;
+    bl.forEach(({b,bi})=>{
+      b.circuitos.forEach((c,ci)=>{
+        html += `<section class="circ"><div class="circ-h"><span>${esc(c.nombre)}</span><span>${c.ejercicios.length} ejercicios</span></div>`;
+        c.ejercicios.forEach((e,ei)=>{
+          const id=`${bi}-${ci}-${ei}`, s=Math.max(1,parseInt(e.series)||1), n=P[id]||0;
+          total+=s; done+=Math.min(n,s);
+          html += `<div class="ex ${n>=s?'complete':''}">
+            <div class="ex-top"><div class="ex-n">${esc(e.n)}</div>
+              <div class="reps">${esc(e.reps)}<small>reps · ${s} series</small></div></div>
+            ${e.nota?`<div class="note">${esc(e.nota)}</div>`:''}
+            <div class="dots">${Array.from({length:s},(_,k)=>`<button class="dot ${k<n?'on':''}" data-id="${id}" data-k="${k}" data-s="${s}" aria-label="Serie ${k+1}">${k+1}</button>`).join('')}</div>
+          </div>`;
+        });
+        html += `</section>`;
+      });
+    });
+  }
+
+  if(R.cardio&&R.cardio.length){
+    html += `<section class="circ cardio"><div class="circ-h"><span>Cardiovascular</span><span>Diario</span></div>`;
+    R.cardio.forEach((c,i)=>{
+      const id=`c-${i}`, on=!!(P[id]);
+      total+=1; done+=on?1:0;
+      html += `<div class="ex ${on?'complete':''}"><div class="ex-top"><div class="ex-n">${esc(c.n)}</div>
+        <div class="reps">${esc(c.tiempo)}<small>diario</small></div></div>
+        ${c.nota?`<div class="note">${esc(c.nota)}</div>`:''}
+        <div class="dots"><button class="dot ${on?'on':''}" data-id="${id}" data-k="0" data-s="1" aria-label="Completado">✓</button></div></div>`;
+    });
+    html += `</section>`;
+  }
+
+  if(total) html += `<button class="reset" id="reset">Reiniciar progreso de hoy</button>`;
+  $('day').innerHTML = html;
+
+  if(total){
+    const pct=Math.round(done/total*100);
+    const f=$('barfill'); if(f){f.style.width=pct+'%';$('barl').textContent=`${done} de ${total} series`;$('barp').textContent=pct+'%'}
+  }
+  $('day').querySelectorAll('.dot').forEach(b=>b.onclick=()=>{
+    const P=getP(), id=b.dataset.id, k=+b.dataset.k, cur=P[id]||0;
+    P[id] = (cur===k+1)?k:k+1; setP(P); render();
+  });
+  const r=$('reset'); if(r) r.onclick=()=>{ if(confirm('¿Reiniciar el progreso de hoy?')){setP({});render()} };
+}
+
+function render(){ renderHeader(); renderTabs(); renderDay(); }
+
+/* ---------------- Excel ⇄ Rutina ---------------- */
+const norm = s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+function parseDias(v){
+  const t=norm(v); if(t.includes('diario')) return [1,2,3,4,5,6,7];
+  return [...new Set((String(v).match(/[1-7]/g)||[]).map(Number))];
+}
+
+function excelToRutina(wb){
+  const out = { cliente:'', programa:'', tipo:'', diasEfectivos:'', objetivos:[], bloques:[], cardio:[] };
+  const sc = wb.SheetNames.find(n=>norm(n)==='cliente');
+  if(sc){
+    XLSX.utils.sheet_to_json(wb.Sheets[sc],{header:1,defval:''}).forEach(r=>{
+      const k=norm(r[0]), v=String(r[1]??'').trim(); if(!v) return;
+      if(k==='nombre'||k==='cliente') out.cliente=v;
+      else if(k==='programa') out.programa=v;
+      else if(k.startsWith('tipo')) out.tipo=v;
+      else if(k.startsWith('dias')) out.diasEfectivos=v;
+      else if(k.startsWith('objetivo')) out.objetivos=v.split(/;|\n/).map(s=>s.trim()).filter(Boolean);
+    });
+  }
+  const sr = wb.SheetNames.find(n=>norm(n)==='rutina') || wb.SheetNames[sc?wb.SheetNames.findIndex(n=>n!==sc):0];
+  const rows = XLSX.utils.sheet_to_json(wb.Sheets[sr],{defval:''});
+  if(!rows.length) throw new Error('La hoja "Rutina" está vacía.');
+  const get=(r,...keys)=>{ for(const k of Object.keys(r)) if(keys.includes(norm(k))) return r[k]; return ''; };
+  rows.forEach(r=>{
+    const bloque=String(get(r,'bloque','grupo')).trim(), ej=String(get(r,'ejercicio')).trim();
+    if(!bloque||!ej) return;
+    const dias=parseDias(get(r,'dias','dia')), circ=String(get(r,'circuito')).trim()||'Circuito 1';
+    const reps=String(get(r,'reps','reps.','tiempo','repeticiones')).trim();
+    const series=parseInt(get(r,'series'))||1, nota=String(get(r,'indicaciones','nota','notas')).trim();
+    if(norm(bloque).includes('cardio')){ out.cardio.push({n:ej,tiempo:reps,nota}); return; }
+    let b=out.bloques.find(x=>x.titulo===bloque);
+    if(!b){ b={titulo:bloque,dias,circuitos:[]}; out.bloques.push(b); }
+    let c=b.circuitos.find(x=>x.nombre===circ);
+    if(!c){ c={nombre:circ,ejercicios:[]}; b.circuitos.push(c); }
+    c.ejercicios.push({n:ej,reps,series,nota});
+  });
+  if(!out.bloques.length) throw new Error('No encontré ejercicios. Revisa las columnas: Bloque, Días, Circuito, Ejercicio, Reps, Series, Indicaciones.');
+  return out;
+}
+
+function rutinaToWorkbook(r){
+  const wb=XLSX.utils.book_new();
+  const cli=[['Campo','Valor'],['Nombre',r.cliente],['Programa',r.programa],['Tipo de programación',r.tipo],
+    ['Días efectivos',r.diasEfectivos],['Objetivos',(r.objetivos||[]).join('; ')]];
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(cli),'Cliente');
+  const rows=[['Bloque','Días','Circuito','Ejercicio','Reps','Series','Indicaciones']];
+  r.bloques.forEach(b=>b.circuitos.forEach(c=>c.ejercicios.forEach(e=>
+    rows.push([b.titulo,b.dias.join(','),c.nombre,e.n,e.reps,e.series,e.nota||'']))));
+  (r.cardio||[]).forEach(c=>rows.push(['CARDIOVASCULAR','Diario','—',c.n,c.tiempo,1,c.nota||'']));
+  const ws=XLSX.utils.aoa_to_sheet(rows);
+  ws['!cols']=[{wch:38},{wch:10},{wch:12},{wch:40},{wch:10},{wch:8},{wch:28}];
+  XLSX.utils.book_append_sheet(wb,ws,'Rutina');
+  return wb;
+}
+
+function download(name,blob){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+const slug = s=>norm(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'rutina';
+const say=(t,ok)=>{const m=$('msg');m.textContent=t;m.className='msg '+(ok?'ok':'err')};
+
+/* ---------------- Eventos admin ---------------- */
+$('fab').onclick=()=>$('modal').classList.add('open');
+$('btnClose').onclick=()=>$('modal').classList.remove('open');
+$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('open')};
+$('btnTpl').onclick=()=>{
+  if(typeof XLSX==='undefined') return say('No se pudo cargar la librería de Excel (¿sin internet?).');
+  XLSX.writeFile(rutinaToWorkbook(R),`plantilla-rutina-${slug(R.cliente)}.xlsx`);
+};
+$('btnJson').onclick=()=>download(`${slug(R.cliente)}.json`,new Blob([JSON.stringify(R,null,2)],{type:'application/json'}));
+$('file').onchange=async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  try{
+    if(typeof XLSX==='undefined') throw new Error('No se pudo cargar la librería de Excel (¿sin internet?).');
+    const wb=XLSX.read(await f.arrayBuffer(),{type:'array'});
+    R=excelToRutina(wb); selDay=bloquesDelDia(todayNum).length?todayNum:1;
+    render(); say(`Rutina de ${R.cliente||'usuario'} cargada ✓`,true);
+  }catch(err){ say(err.message||'No pude leer el archivo.'); }
+  e.target.value='';
+};
+
+/* ---------------- Logo (usa assets/logo.png si existe) ---------------- */
+(function(){
+  const fallback=`<svg viewBox="0 0 100 100" class="logo" aria-hidden="true"><path d="M50 8 L92 88 Q50 78 8 88 Z" fill="none" stroke="#e8b923" stroke-width="4" stroke-linejoin="round"/><path d="M30 62 Q50 40 70 62" fill="none" stroke="#e8b923" stroke-width="4"/></svg>`;
+  const img=new Image(); img.alt='Champion Academy';
+  img.onload=()=>{$('logo').innerHTML='';$('logo').appendChild(img)};
+  img.onerror=()=>{$('logo').innerHTML=fallback};
+  img.src='assets/logo.png';
+})();
+
+/* ---------------- Inicio ---------------- */
+(async function init(){
+  const url = params.get('u') ? `rutinas/${encodeURIComponent(params.get('u'))}.json` : 'rutina.json';
+  try{ const r=await fetch(url,{cache:'no-store'}); if(r.ok) R=await r.json(); }catch(e){}
+  selDay = bloquesDelDia(todayNum).length ? todayNum : 1;
+  render();
+})();
+</script>
+</body>
+</html>
