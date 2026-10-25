@@ -12,7 +12,7 @@
 <style>
 :root{
   --bg:#0c0c0e; --bg2:#151518; --card:#1a1a1e; --line:#2a2a30;
-  --gold:#e8b923; --gold2:#f6d86a; --gold-dim:#8a6f14;
+  --gold:#e8b923; --gold2:#f6d86a; --gold-dim:#8a6f14; --soft:#2a2410; --ink:#201a00; --glow:#e8b92388; --glow0:#e8b92300; --tint:#fbf3d3; --deep:#7a5c00; --deep2:#5c4700; --deep3:#b88a00;
   --text:#f4f4f5; --muted:#9a9aa3; --ok:#3ecf8e; --ok-soft:#3ecf8e14;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -29,7 +29,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--gold2);outline-offs
 
 /* ---------- Header ---------- */
 header.hero{padding:calc(14px + env(safe-area-inset-top)) 16px 6px;text-align:center;position:relative;overflow:hidden}
-header.hero::before,header.hero::after{content:"";position:absolute;width:54px;height:54px;border-top:3px solid var(--gold);border-left:3px solid var(--gold);opacity:.8;box-shadow:-4px -4px 14px #e8b92340}
+header.hero::before,header.hero::after{content:"";position:absolute;width:54px;height:54px;border-top:3px solid var(--gold);border-left:3px solid var(--gold);opacity:.8;box-shadow:-4px -4px 14px var(--glow)}
 header.hero::before{left:-30px;top:44px;transform:rotate(-45deg)}
 header.hero::after{right:-30px;top:44px;transform:rotate(135deg)}
 .logo{width:min(84px,26vw);margin:0 auto 4px}
@@ -50,30 +50,30 @@ header.hero::after{right:-30px;top:44px;transform:rotate(135deg)}
 .week-in{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
 .tab{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:12px;padding:7px 0 8px;text-align:center;cursor:pointer;font-size:.66rem;position:relative;min-height:62px}
 .tab strong{display:block;font-size:1rem;color:var(--text);margin-top:1px}
-.tab.on{background:var(--gold);border-color:var(--gold);color:#201a00}
-.tab.on strong{color:#201a00}
+.tab.on{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.tab.on strong{color:var(--ink)}
 .tab.today::after{content:"HOY";white-space:nowrap;width:max-content;position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--bg);color:var(--gold);border:1px solid var(--gold);font-size:.5rem;font-weight:800;letter-spacing:.06em;padding:0 5px;border-radius:99px;line-height:1.5}
 .ring{--p:0;width:22px;height:22px;border-radius:50%;margin:5px auto 0;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),#34343b 0)}
 .ring span{width:14px;height:14px;border-radius:50%;background:var(--bg2);display:grid;place-items:center}
-.tab.on .ring{background:conic-gradient(#201a00 calc(var(--p)*1%),#00000030 0)}
+.tab.on .ring{background:conic-gradient(var(--ink) calc(var(--p)*1%),#00000030 0)}
 .tab.on .ring span{background:var(--gold)}
 .ring.full{background:var(--gold)}
-.ring.full span{background:var(--gold);color:#201a00;font-size:.7rem;font-weight:900}
-.tab.on .ring.full{background:#201a00}
-.tab.on .ring.full span{background:#201a00;color:var(--gold2)}
+.ring.full span{background:var(--gold);color:var(--ink);font-size:.7rem;font-weight:900}
+.tab.on .ring.full{background:var(--ink)}
+.tab.on .ring.full span{background:var(--ink);color:var(--gold2)}
 .tab.future .ring{opacity:.4}
 
 /* ---------- Día ---------- */
 .dayhead{margin:14px 0 14px}
 .dayhead h2{margin:0;font-size:1.2rem;line-height:1.25;overflow-wrap:anywhere}
-.dayhead small{display:inline-block;color:var(--gold);background:#2a2410;font-weight:700;font-size:.72rem;border-radius:99px;padding:2px 10px;margin-top:6px}
+.dayhead small{display:inline-block;color:var(--gold);background:var(--soft);font-weight:700;font-size:.72rem;border-radius:99px;padding:2px 10px;margin-top:6px}
 .bar{height:10px;background:var(--bg2);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:12px}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-dim),var(--gold),var(--gold2));border-radius:99px;transition:width .35s}
 .barlbl{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted);margin-top:6px}
 .barlbl b{color:var(--gold2)}
 
 .circ{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden}
-.circ-h{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#201a00;font-weight:800;padding:9px 16px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.circ-h{background:linear-gradient(90deg,var(--gold),var(--gold2));color:var(--ink);font-weight:800;padding:9px 16px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .circ-h em{font-style:normal;font-weight:700;font-size:.72rem;background:#00000018;border-radius:99px;padding:2px 9px;letter-spacing:.02em;text-transform:none;white-space:nowrap}
 .ex{padding:14px 16px;border-top:1px solid var(--line)}
 .ex:first-of-type{border-top:0}
@@ -82,11 +82,17 @@ header.hero::after{right:-30px;top:44px;transform:rotate(135deg)}
 .reps{flex:none;text-align:right;color:var(--gold);font-weight:800;font-size:.95rem;white-space:nowrap}
 .reps small{display:block;color:var(--muted);font-weight:500;font-size:.64rem;text-transform:uppercase;letter-spacing:.06em}
 .ex-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
-.note{font-size:.8rem;color:var(--gold2);background:#2a2410;border-left:3px solid var(--gold);padding:4px 8px;border-radius:0 6px 6px 0;display:inline-block}
-.tech{min-height:36px;background:#2a2410;border:1px solid var(--gold);color:var(--gold2);border-radius:99px;padding:4px 14px;font-weight:800;font-size:.8rem;cursor:pointer}
+.note{font-size:.8rem;color:var(--gold2);background:var(--soft);border-left:3px solid var(--gold);padding:4px 8px;border-radius:0 6px 6px 0;display:inline-block}
+.tech{min-height:40px;background:none;border:1px solid var(--gold);color:var(--gold2);border-radius:99px;padding:6px 14px;font-weight:800;font-size:.82rem;cursor:pointer}
+.tech[aria-expanded=true]{background:var(--soft)}
+.tech-panel{display:none;margin-top:10px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:10px}
+.tech-panel.open{display:block}
+.tech-panel .media{margin:0 0 8px}
+.tech-panel .tec{margin:0 0 8px!important;font-size:.88rem!important}
+.tech-panel .btn{margin-top:0;min-height:44px}
 .dots{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
 .dot{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--bg2);color:var(--muted);font-weight:700;cursor:pointer;transition:.15s;user-select:none;-webkit-user-select:none}
-.dot.on{background:var(--gold);border-color:var(--gold);color:#201a00;transform:scale(1.05)}
+.dot.on{background:var(--gold);border-color:var(--gold);color:var(--ink);transform:scale(1.05)}
 .ex.complete{background:var(--ok-soft)}
 .ex.complete .ex-n{color:var(--ok)}
 .ex.complete .ex-n::after{content:" ✓"}
@@ -97,7 +103,7 @@ header.hero::after{right:-30px;top:44px;transform:rotate(135deg)}
 
 .rest{text-align:center;padding:24px 16px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:16px;margin-bottom:14px}
 .rest b{display:block;font-size:1.1rem;color:var(--text);margin-bottom:4px}
-.cta-week{background:linear-gradient(160deg,#2a2410,var(--card));border:1px solid var(--gold-dim);border-radius:16px;padding:16px;margin-bottom:14px;text-align:center}
+.cta-week{background:linear-gradient(160deg,var(--soft),var(--card));border:1px solid var(--gold-dim);border-radius:16px;padding:16px;margin-bottom:14px;text-align:center}
 .cta-week b{color:var(--gold2);display:block;font-size:1.05rem;margin-bottom:4px}
 .cta-week p{margin:0 0 12px;color:#cfcfd2;font-size:.85rem}
 .err{text-align:center;padding:40px 16px;color:var(--muted)}
@@ -105,20 +111,20 @@ header.hero::after{right:-30px;top:44px;transform:rotate(135deg)}
 
 .actions{display:grid;gap:10px;margin-top:6px}
 .btn{display:block;width:100%;min-height:48px;text-align:center;background:var(--bg2);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:13px;font-weight:700;cursor:pointer;text-decoration:none}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:#201a00}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 .btn.out{background:none;border-color:var(--gold);color:var(--gold2)}
 .btn.ghost{background:none;border-color:transparent;color:var(--muted);font-weight:600;font-size:.82rem}
 .slogan{text-align:center;font-style:italic;font-weight:900;font-size:1.6rem;color:var(--gold);margin:26px 0 8px}
 
 /* ---------- Botón flotante: Mi progreso ---------- */
 .fab-prog{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:10px;min-height:54px;padding:8px 18px 8px 8px;border:0;border-radius:999px;cursor:pointer;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#201a00;font-weight:900;font-size:.95rem;box-shadow:0 8px 24px #000c,0 0 0 0 #e8b92366;animation:glow 3.2s ease-out infinite}
-.fab-prog .ico{width:38px;height:38px;border-radius:50%;background:#201a00;color:var(--gold2);display:grid;place-items:center;font-size:1.15rem}
-@keyframes glow{0%{box-shadow:0 8px 24px #000c,0 0 0 0 #e8b92388}70%,100%{box-shadow:0 8px 24px #000c,0 0 0 16px #e8b92300}}
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);font-weight:900;font-size:.95rem;box-shadow:0 8px 24px #000c,0 0 0 0 var(--glow);animation:glow 3.2s ease-out infinite}
+.fab-prog .ico{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--gold2);display:grid;place-items:center;font-size:1.15rem}
+@keyframes glow{0%{box-shadow:0 8px 24px #000c,0 0 0 0 var(--glow)}70%,100%{box-shadow:0 8px 24px #000c,0 0 0 16px var(--glow0)}}
 body:has(.modal.open) .fab-prog{display:none}
 
 /* ---------- Modales ---------- */
-.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-220%);opacity:0;visibility:hidden;z-index:40;background:var(--gold);color:#201a00;font-weight:800;font-size:.9rem;padding:11px 18px;border-radius:14px;box-shadow:0 8px 24px #000a;max-width:min(92vw,420px);text-align:center;transition:transform .3s,opacity .3s,visibility .3s;pointer-events:none}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-220%);opacity:0;visibility:hidden;z-index:40;background:var(--gold);color:var(--ink);font-weight:800;font-size:.9rem;padding:11px 18px;border-radius:14px;box-shadow:0 8px 24px #000a;max-width:min(92vw,420px);text-align:center;transition:transform .3s,opacity .3s,visibility .3s;pointer-events:none}
 .toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
 .modal{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;z-index:30;overscroll-behavior:contain}
 .modal.open{display:flex}
@@ -181,25 +187,25 @@ body:has(.modal.open) .fab-prog{display:none}
   #printDoc{display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:10.5pt;color:#111}
   .pd-head{display:flex;align-items:center;gap:14px;background:#0c0c0e;color:#fff;border-radius:10px;padding:10px 16px;margin-bottom:10px}
   .pd-head img{width:62px;height:auto;flex:none}
-  .pd-head h1{margin:0;font-size:18pt;color:#f6d86a}
+  .pd-head h1{margin:0;font-size:18pt;color:var(--gold2)}
   .pd-head p{margin:2px 0 0;color:#e9e9ea;font-size:10pt}
   .pd-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 6px;font-size:9.5pt;color:#444}
-  .pd-meta b{color:#7a5c00}
-  .pd-obj{margin:0 0 10px;padding:6px 10px;border-left:4px solid #e8b923;background:#fbf3d3;font-size:9.5pt}
+  .pd-meta b{color:var(--deep)}
+  .pd-obj{margin:0 0 10px;padding:6px 10px;border-left:4px solid var(--gold);background:var(--tint);font-size:9.5pt}
   .pd-block{margin-top:12px}
-  .pd-block>h2{margin:0;font-size:13pt;background:#e8b923;color:#201a00;padding:5px 10px;border-radius:6px 6px 0 0;break-after:avoid}
-  .pd-days{margin:0;padding:3px 10px;font-size:9pt;background:#fbf3d3;color:#5c4700;font-weight:700;break-after:avoid}
+  .pd-block>h2{margin:0;font-size:13pt;background:var(--gold);color:var(--ink);padding:5px 10px;border-radius:6px 6px 0 0;break-after:avoid}
+  .pd-days{margin:0;padding:3px 10px;font-size:9pt;background:var(--tint);color:var(--deep2);font-weight:700;break-after:avoid}
   table.pd{width:100%;table-layout:fixed;border-collapse:collapse;margin:0 0 8px;break-inside:avoid;page-break-inside:avoid}
   table.pd th:nth-child(1){width:35%}table.pd th:nth-child(2){width:12%}table.pd th:nth-child(3){width:10%}table.pd th:nth-child(4){width:25%}table.pd th:nth-child(5){width:18%}
   table.pd th:nth-child(2),table.pd th:nth-child(3),table.pd th:nth-child(5){text-align:center}
-  table.pd caption{caption-side:top;text-align:left;font-weight:800;font-size:9.5pt;text-transform:uppercase;letter-spacing:.05em;padding:6px 4px 2px;color:#7a5c00}
-  table.pd th{background:#0c0c0e;color:#f6d86a;font-size:8.5pt;text-align:left;padding:4px 6px;text-transform:uppercase;letter-spacing:.04em}
+  table.pd caption{caption-side:top;text-align:left;font-weight:800;font-size:9.5pt;text-transform:uppercase;letter-spacing:.05em;padding:6px 4px 2px;color:var(--deep)}
+  table.pd th{background:#0c0c0e;color:var(--gold2);font-size:8.5pt;text-align:left;padding:4px 6px;text-transform:uppercase;letter-spacing:.04em}
   table.pd td{padding:5px 6px;border-bottom:1px solid #ddd;vertical-align:middle;font-size:10pt}
   table.pd td.c{text-align:center;white-space:nowrap}
   table.pd td.n{font-weight:700}
-  table.pd td.i{font-size:9pt;color:#5c4700}
+  table.pd td.i{font-size:9pt;color:var(--deep2)}
   .pd-box{display:inline-block;width:11px;height:11px;border:1.4px solid #333;border-radius:2px;margin-right:4px;vertical-align:middle}
-  .pd-foot{margin-top:12px;text-align:center;font-style:italic;font-weight:900;font-size:14pt;color:#b88a00}
+  .pd-foot{margin-top:12px;text-align:center;font-style:italic;font-weight:900;font-size:14pt;color:var(--deep3)}
   .pd-foot small{display:block;font-style:normal;font-weight:400;font-size:8pt;color:#777;margin-top:2px}
 }
 </style>
@@ -235,40 +241,45 @@ body:has(.modal.open) .fab-prog{display:none}
 <div class="modal" id="pgmodal" role="dialog" aria-modal="true" aria-label="Mi progreso">
   <div class="sheet"><div id="pg"></div><button class="btn out" id="pgClose">Cerrar</button></div>
 </div>
-<!-- Técnica -->
-<div class="modal" id="mdmodal" role="dialog" aria-modal="true" aria-label="Técnica del ejercicio">
-  <div class="sheet"><div id="md"></div><button class="btn out" id="mdClose">Cerrar</button></div>
-</div>
 
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
 /* ============================================================
-   RUTINA POR DEFECTO (Alfredo Castillo) — se usa solo si no se
-   encuentra rutina.json. Para otra persona se publica su archivo
-   en rutinas/<nombre>.json y se abre la app con ?u=<nombre>
-   (los archivos .json se generan en admin.html a partir del Excel).
+   CONFIGURACIÓN DE ESTA PÁGINA (una por usuario)
+   - tema: dorado | plata | rosa | morado  (colores de la app y de las frases)
+   - genero: mujer | hombre  (filtra algunas frases)
+   - cada ejercicio puede traer media (enlace de YouTube, GIF, foto o mp4) y tec (texto corto)
    ============================================================ */
-const DEFAULT = {"cliente": "Alfredo Castillo", "genero": "hombre", "programa": "Extremidades superiores / Piernas / Tronco", "tipo": "Hombro, bíceps y tríceps; piernas; pecho y espalda", "diasEfectivos": 6, "objetivos": ["Incremento de resistencia muscular", "Disminución de % de grasa corporal"], "bloques": [{"titulo": "Hombros / Bíceps / Tríceps", "dias": [1, 3, 5], "circuitos": [{"nombre": "Circuito 1", "ejercicios": [{"n": "Press de hombro c/mancuerna", "reps": "10 a 12", "series": 4, "nota": ""}, {"n": "Elevaciones laterales con cable", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Pájaros sobre banco inclinado a 45°", "reps": "12 a 15", "series": 4, "nota": ""}]}, {"nombre": "Circuito 3", "ejercicios": [{"n": "Curl c/barra Z", "reps": "10 a 12", "series": 4, "nota": ""}, {"n": "Curl c/mancuerna sentado", "reps": "12 a 15", "series": 4, "nota": "Banco inclinado 30°"}, {"n": "Curl martillo simultáneo", "reps": "12 a 15", "series": 4, "nota": "Mantener contracción 1s"}]}, {"nombre": "Circuito 4", "ejercicios": [{"n": "Copa a dos manos c/mancuerna", "reps": "10 a 12", "series": 4, "nota": ""}, {"n": "Press francés barra Z", "reps": "12 a 15", "series": 4, "nota": "Banco inclinado 60°"}, {"n": "Extensión de tríceps c/cuerda", "reps": "12 a 15", "series": 4, "nota": ""}]}]}, {"titulo": "Cuádriceps / Femorales / Glúteos y Gemelos", "dias": [2, 6], "circuitos": [{"nombre": "Circuito 1", "ejercicios": [{"n": "Sentadilla hack", "reps": "10 a 12", "series": 4, "nota": "Posición neutra"}, {"n": "Leg extensión", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Leg curl boca abajo", "reps": "12 a 15", "series": 4, "nota": ""}]}, {"nombre": "Circuito 2", "ejercicios": [{"n": "Prensa", "reps": "12 a 15", "series": 4, "nota": "Posición neutra"}, {"n": "Leg curl en silla", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Desplantes en máquina smith", "reps": "10 a 12", "series": 4, "nota": ""}]}, {"nombre": "Circuito 4", "ejercicios": [{"n": "Máquina de abducción", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Máquina de aducción", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Elevación de talones parado", "reps": "15 a 20", "series": 4, "nota": "Cuidar alineación espalda"}]}]}, {"titulo": "Espalda / Pecho", "dias": [4], "circuitos": [{"nombre": "Circuito 1", "ejercicios": [{"n": "Jalón al frente", "reps": "12 a 15", "series": 4, "nota": "Agarre prono"}, {"n": "Remo sentado con triángulo", "reps": "12 a 15", "series": 4, "nota": "Agarre neutro"}, {"n": "Pulldown c/cuerda", "reps": "12 a 15", "series": 4, "nota": ""}]}, {"nombre": "Circuito 3", "ejercicios": [{"n": "Press c/mancuerna en banco inclinado", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Fondos con agarre abierto", "reps": "12 a 15", "series": 4, "nota": ""}, {"n": "Cristos c/mancuerna en banco horizontal", "reps": "12 a 15", "series": 4, "nota": ""}]}]}], "cardio": [{"n": "Caminadora o elíptica o escalera", "tiempo": "45 min.", "nota": "Mantener ritmo medio"}]};
+const CONFIG = {"cliente": "Alfredo Castillo", "genero": "hombre", "programa": "Extremidades superiores / Piernas / Tronco", "tipo": "Hombro, bíceps y tríceps; piernas; pecho y espalda", "diasEfectivos": 6, "objetivos": ["Incremento de resistencia muscular", "Disminución de % de grasa corporal"], "bloques": [{"titulo": "Hombros / Bíceps / Tríceps", "dias": [1, 3, 5], "circuitos": [{"nombre": "Circuito 1", "ejercicios": [{"n": "Press de hombro c/mancuerna", "reps": "10 a 12", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=SYA1r1J49R8", "tec": "Espalda pegada al respaldo, baja hasta la altura de las orejas y empuja sin chocar las mancuernas arriba."}, {"n": "Elevaciones laterales con cable", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=OXLuvI4GF7E", "tec": "Sube el brazo hasta la altura del hombro, codo ligeramente flexionado, sin balancear el torso."}, {"n": "Pájaros sobre banco inclinado a 45°", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=pgxSZCkaP7s", "tec": "Pecho apoyado, abre los brazos hacia los lados con codos ligeramente flexionados y aprieta la espalda alta arriba."}]}, {"nombre": "Circuito 3", "ejercicios": [{"n": "Curl c/barra Z", "reps": "10 a 12", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=jkwxFce71ao", "tec": "Codos pegados al cuerpo, sube sin impulso del torso y baja controlando."}, {"n": "Curl c/mancuerna sentado", "reps": "12 a 15", "series": 4, "nota": "Banco inclinado 30°", "media": "https://www.youtube.com/watch?v=ysEVZPMY0Y8", "tec": "Espalda apoyada en el banco inclinado, deja caer el brazo por completo y sube sin mover el codo hacia adelante."}, {"n": "Curl martillo simultáneo", "reps": "12 a 15", "series": 4, "nota": "Mantener contracción 1s", "media": "https://www.youtube.com/watch?v=mPvlpDWIoDA", "tec": "Palmas enfrentadas durante todo el movimiento, codos fijos y contracción de 1 segundo arriba."}]}, {"nombre": "Circuito 4", "ejercicios": [{"n": "Copa a dos manos c/mancuerna", "reps": "10 a 12", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=JTczoqjnKUA", "tec": "Sostén la mancuerna con las dos manos detrás de la cabeza, codos apuntando al frente, y extiende sin abrirlos."}, {"n": "Press francés barra Z", "reps": "12 a 15", "series": 4, "nota": "Banco inclinado 60°", "media": "https://www.youtube.com/watch?v=BIca6STWIXQ", "tec": "Codos fijos apuntando al techo, baja la barra hacia la frente y extiende sin mover los hombros."}, {"n": "Extensión de tríceps c/cuerda", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=iiA6LOkV-rw", "tec": "Codos pegados a las costillas, abre la cuerda al final del recorrido y sube controlando."}]}]}, {"titulo": "Cuádriceps / Femorales / Glúteos y Gemelos", "dias": [2, 6], "circuitos": [{"nombre": "Circuito 1", "ejercicios": [{"n": "Sentadilla hack", "reps": "10 a 12", "series": 4, "nota": "Posición neutra", "media": "https://www.youtube.com/watch?v=VNpkYdex6Yc", "tec": "Espalda y cadera apoyadas, baja con control hasta donde tu movilidad lo permita y empuja con todo el pie."}, {"n": "Leg extensión", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=rf5Nxw0vaOc", "tec": "Ajusta el respaldo para que la rodilla quede en el eje de giro, extiende completo y baja sin dejar caer el peso."}, {"n": "Leg curl boca abajo", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=sRMO3SbTqjk", "tec": "Cadera pegada al banco, flexiona llevando los talones hacia los glúteos y regresa lento."}]}, {"nombre": "Circuito 2", "ejercicios": [{"n": "Prensa", "reps": "12 a 15", "series": 4, "nota": "Posición neutra", "media": "https://www.youtube.com/watch?v=681MG5l5SrA", "tec": "Espalda baja pegada al respaldo, baja hasta una flexión cómoda sin despegar la cadera y no bloquees las rodillas arriba."}, {"n": "Leg curl en silla", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=btw83p9ffTU", "tec": "Ajusta el rodillo sobre los tobillos, flexiona hasta el final del recorrido y sube lento."}, {"n": "Desplantes en máquina smith", "reps": "10 a 12", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=dQoMiwr8Vho", "tec": "Paso largo, torso erguido, baja con la rodilla de atrás hacia el piso y empuja con el talón del pie delantero."}]}, {"nombre": "Circuito 4", "ejercicios": [{"n": "Máquina de abducción", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=2vCRMi-lgJ4", "tec": "Espalda apoyada, abre las piernas sin impulso y regresa lento sin dejar que las placas choquen."}, {"n": "Máquina de aducción", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=lHpKyWAjkM0", "tec": "Cierra las piernas con control, pausa un segundo al juntarlas y abre despacio sin forzar la apertura."}, {"n": "Elevación de talones parado", "reps": "15 a 20", "series": 4, "nota": "Cuidar alineación espalda", "media": "https://www.youtube.com/watch?v=yyoubmNCDk4", "tec": "Sube lo más alto que puedas sobre la punta de los pies, pausa arriba y baja estirando por completo."}]}]}, {"titulo": "Espalda / Pecho", "dias": [4], "circuitos": [{"nombre": "Circuito 1", "ejercicios": [{"n": "Jalón al frente", "reps": "12 a 15", "series": 4, "nota": "Agarre prono", "media": "https://www.youtube.com/watch?v=EO9AmI-bu_0", "tec": "Pecho arriba, jala la barra hacia la parte alta del pecho llevando los codos hacia abajo y atrás."}, {"n": "Remo sentado con triángulo", "reps": "12 a 15", "series": 4, "nota": "Agarre neutro", "media": "https://www.youtube.com/watch?v=nwdptbhYjTw", "tec": "Espalda recta, jala hacia el abdomen juntando los omóplatos y regresa estirando sin encorvarte."}, {"n": "Pulldown c/cuerda", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=HADmGUMN-Mw", "tec": "Brazos casi rectos, baja la cuerda hacia los muslos con la fuerza de la espalda y sube controlando."}]}, {"nombre": "Circuito 3", "ejercicios": [{"n": "Press c/mancuerna en banco inclinado", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=oTD5g77GgSA", "tec": "Omóplatos juntos y pegados al banco, baja hasta la altura del pecho y empuja sin chocar las mancuernas."}, {"n": "Fondos con agarre abierto", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=OgjaUueRiII", "tec": "Torso ligeramente inclinado al frente, baja con control hasta sentir el estiramiento del pecho y sube sin bloquear los codos."}, {"n": "Cristos c/mancuerna en banco horizontal", "reps": "12 a 15", "series": 4, "nota": "", "media": "https://www.youtube.com/watch?v=LHkxanQKCZI", "tec": "Codos ligeramente flexionados y fijos, abre hasta sentir estiramiento en el pecho y junta como si abrazaras un tronco."}]}]}], "cardio": [{"n": "Caminadora o elíptica o escalera", "tiempo": "45 min.", "nota": "Mantener ritmo medio"}], "tema": "dorado"};
 
-/* ---------------- Frases motivacionales (carpeta frases/) ----------------
-   Archivo: frases/<Frase>-<Color>.webp
-   Colores: D=dorado, P=plata, R=rosa, M=morado/magenta. Se puede agregar
-   azul, verde, etc. subiendo los archivos y sumando el código aquí.        */
-const FR = {
-  lista:[
-    ['Release','Release your potential'],['Believe','Believe in yourself'],['BeStrong','Be strong'],
-    ['Beachampion','Be a champion'],['BeyourBest','Be your best'],['Determination','Determination'],
-    ['Trust','Trust yourself'],['Unleashed','Unleash you'],['Version','Be your best version'],
-    ['BeBeauty','Be beauty','mujer']
-  ],
-  pal:{mujer:['R1','R2','M1'],hombre:['D1','D2','P1'],base:['D1','D2']}
+/* ---------------- Temas de color ---------------- */
+const THEMES = {
+  dorado:{gold:'#e8b923',gold2:'#f6d86a',dim:'#8a6f14',soft:'#2a2410',ink:'#201a00',glow:'#e8b92388',tint:'#fbf3d3',deep:'#7a5c00',deep2:'#5c4700',deep3:'#b88a00',frases:['D1','D2']},
+  plata:{gold:'#c9ccd1',gold2:'#eceef1',dim:'#6d7077',soft:'#242528',ink:'#141416',glow:'#c9ccd188',tint:'#eef0f2',deep:'#4a4d54',deep2:'#3a3c42',deep3:'#6d7077',frases:['P1']},
+  rosa:{gold:'#ee2a7b',gold2:'#ff7ab2',dim:'#8d1a4b',soft:'#2b1020',ink:'#1f0612',glow:'#ee2a7b88',tint:'#fde4ef',deep:'#9c1252',deep2:'#7a0f40',deep3:'#c2185b',frases:['R1','R2']},
+  morado:{gold:'#b04fd6',gold2:'#d79bf0',dim:'#5e2a78',soft:'#22122b',ink:'#14061c',glow:'#b04fd688',tint:'#f1e2f9',deep:'#6e2a8f',deep2:'#561f72',deep3:'#8a3fb0',frases:['M1']}
 };
+const TEMA = THEMES[CONFIG.tema] ? CONFIG.tema : 'dorado';
+(function(){ const T=THEMES[TEMA], s=document.documentElement.style;
+  s.setProperty('--gold',T.gold); s.setProperty('--gold2',T.gold2); s.setProperty('--gold-dim',T.dim); s.setProperty('--soft',T.soft); s.setProperty('--ink',T.ink);
+  s.setProperty('--glow',T.glow); s.setProperty('--glow0',T.glow.slice(0,7)+'00'); s.setProperty('--tint',T.tint); s.setProperty('--deep',T.deep); s.setProperty('--deep2',T.deep2); s.setProperty('--deep3',T.deep3); })();
+
+/* ---------------- Frases motivacionales ----------------
+   Imágenes del repositorio: Frases/<Frase>/<Frase>-<Color>.png
+   Si las imágenes están en otra carpeta o en otra dirección, cambia FRASES_BASE. */
+const FRASES_BASE = 'Frases/';
+const FR = { lista:[
+  ['Release','Release your potential'],['Believe','Believe in yourself'],['BeStrong','Be strong'],
+  ['Beachampion','Be a champion'],['BeyourBest','Be your best'],['Determination','Determination'],
+  ['Trust','Trust yourself'],['Unleashed','Unleash you'],['Version','Be your best version'],
+  ['BeBeaty','Be beauty','mujer']
+]};
 
 /* ---------------- Estado y fechas ---------------- */
-let R = null, CAT = {};
-const params = new URLSearchParams(location.search);
-const USER = params.get('u') || 'default';
+const R = CONFIG;
+const norm = s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+const USER = String(R.id||R.cliente||'rutina').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'rutina';
 const DAYS = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
 const DAYS_LONG = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 const MONTHS = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -277,7 +288,6 @@ const esc = s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':
 const pad = n=>String(n).padStart(2,'0');
 const ymd = d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 const wdOf = d=>((d.getDay()+6)%7)+1;                        // Lun=1 … Dom=7
-const norm = s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();
 
 const startOfToday = (()=>{const d=new Date();d.setHours(0,0,0,0);return d})();
 const todayNum = wdOf(startOfToday);
@@ -316,35 +326,34 @@ let toastT=0;
 function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3200); }
 const buzz = p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
-/* ---------------- Catálogo de técnica ---------------- */
+/* ---------------- Técnica (video / GIF dentro de la tarjeta) ---------------- */
 function safeUrl(u){
   u=String(u||'').trim(); if(!u) return null;
   if(/^https:\/\//i.test(u)) return u;
-  if(/^[\w][\w\-\/. %]*$/.test(u)) return u;      // ruta dentro del repositorio
-  return null;
-}
-function techOf(e){
-  const own=safeUrl(e.media);
-  if(own) return {media:own,tec:e.tec||(CAT[norm(e.n)]||{}).tec||''};
-  const c=CAT[norm(e.n)]; if(c&&safeUrl(c.video)) return {media:safeUrl(c.video),tec:e.tec||c.tec||''};
+  if(/^[\w][\w\-\/. %]*$/.test(u)) return u;      // archivo dentro del repositorio
   return null;
 }
 const ytId = u=>{const m=String(u).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/))([\w-]{11})/);return m?m[1]:null};
 function mediaEl(u){
   const id=ytId(u);
-  if(id) return `<div class="media"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy" title="Técnica del ejercicio"></iframe></div>
+  if(id) return `<div class="media"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1" allow="encrypted-media; picture-in-picture" allowfullscreen title="Técnica del ejercicio"></iframe></div>
     <a class="btn" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">Abrir en YouTube</a>`;
   if(/\.(mp4|webm|mov)(\?|#|$)/i.test(u)) return `<div class="media"><video src="${esc(u)}" autoplay loop muted playsinline controls></video></div>`;
   if(/\.(gif|png|jpe?g|webp|avif|svg)(\?|#|$)/i.test(u)) return `<div class="media"><img src="${esc(u)}" alt="Demostración del ejercicio"></div>`;
   return `<a class="btn gold" href="${esc(u)}" target="_blank" rel="noopener noreferrer">Abrir enlace de la técnica</a>`;
 }
 let EX = {};
-function openMedia(id){
-  const it=EX[id]; if(!it||!it.media) return;
-  $('md').innerHTML=`<h3 class="rv-title" style="text-align:left">${esc(it.n)}</h3>
-    ${it.nota?`<p style="margin:6px 0 10px"><span class="note">${esc(it.nota)}</span></p>`:''}
-    ${it.tec?`<p class="tec">${esc(it.tec)}</p>`:''}${mediaEl(it.media)}`;
-  openModal('mdmodal');
+function closeTech(){
+  document.querySelectorAll('.tech-panel.open').forEach(p=>{ p.classList.remove('open'); p.innerHTML=''; });
+  document.querySelectorAll('.tech[aria-expanded=true]').forEach(b=>{ b.setAttribute('aria-expanded','false'); b.textContent='▶ ¿No sabes cómo hacerlo?'; });
+}
+function toggleTech(id){
+  const card=document.querySelector(`.ex[data-id="${id}"]`), it=EX[id]; if(!card||!it||!it.media) return;
+  const btn=card.querySelector('.tech'), panel=card.querySelector('.tech-panel'), wasOpen=panel.classList.contains('open');
+  closeTech(); if(wasOpen) return;
+  panel.innerHTML=`${it.tec?`<p class="tec">${esc(it.tec)}</p>`:''}${mediaEl(it.media)}`;
+  panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); btn.textContent='▲ Ocultar ejercicio';
+  setTimeout(()=>{ const r=panel.getBoundingClientRect(); if(r.bottom>innerHeight-70) window.scrollBy({top:r.bottom-innerHeight+90,behavior:'smooth'}); },60);
 }
 
 /* ---------------- Render ---------------- */
@@ -376,11 +385,12 @@ function renderTabs(){
 }
 
 function exHTML(id,e,n){
-  const s=EX[id].s, tools=`${e.nota?`<span class="note">${esc(e.nota)}</span>`:''}${EX[id].media?`<button class="tech" data-id="${id}">▶ Ver técnica</button>`:''}`;
+  const s=EX[id].s, tools=`${e.nota?`<span class="note">${esc(e.nota)}</span>`:''}${EX[id].media?`<button class="tech" data-id="${id}" aria-expanded="false">▶ ¿No sabes cómo hacerlo?</button>`:''}`;
   return `<div class="ex ${n>=s?'complete':''}" data-id="${id}">
     <div class="ex-top"><div class="ex-n">${esc(e.n)}</div>
       <div class="reps">${esc(e.reps)}<small>reps · ${s} series</small></div></div>
     ${tools?`<div class="ex-tools">${tools}</div>`:''}
+    ${EX[id].media?'<div class="tech-panel"></div>':''}
     <div class="dots">${Array.from({length:s},(_,k)=>{const on=k<n; return `<button class="dot ${on?'on':''}" data-id="${id}" data-k="${k}" aria-pressed="${on}" aria-label="Serie ${k+1}${on?' completada':''}">${k+1}</button>`}).join('')}</div>
   </div>`;
 }
@@ -388,23 +398,23 @@ function exHTML(id,e,n){
 function renderDay(){
   const bl = bloquesDelDia(selDay), P = getP(selDay), st = dayStats(selDay);
   const date=dateOf(selDay), isToday = selDay===todayNum;
-  EX = {}; let html='';
+  EX = {}; closeTech(); let html='';
 
   if(selDay===7) html += `<div class="cta-week"><b>Cierra tu semana</b><p>Mira cuánto lograste, qué te faltó y llévate tu frase para arrancar el lunes.</p><button class="btn gold" id="ctaWeek">Ver resumen de la semana</button></div>`;
 
   const titulo = bl.length ? bl.map(x=>x.b.titulo).join(' + ') : 'Descanso activo';
   html += `<div class="dayhead"><h2>${esc(titulo)}</h2>
     <small>${DAYS_LONG[selDay-1]} ${date.getDate()}${isToday?' · HOY':''}</small>
-    ${st.t?`<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${st.pct}" aria-label="Avance del día"><i style="width:${st.pct}%"></i></div>
-      <div class="barlbl"><span>${st.d} de ${st.t} series</span><b>${st.pct}%</b></div>`:''}</div>`;
+    ${st.t?`<div class="bar" id="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${st.pct}" aria-label="Avance del día"><i id="barFill" style="width:${st.pct}%"></i></div>
+      <div class="barlbl"><span id="barTxt">${st.d} de ${st.t} series</span><b id="barPct">${st.pct}%</b></div>`:''}</div>`;
 
   if(!bl.length) html += `<div class="rest"><b>Sin pesas hoy</b>Día de recuperación. Si te toca cardio, márcalo abajo.</div>`;
 
   bl.forEach(({b,bi})=>b.circuitos.forEach((c,ci)=>{
     let cd=0, ct=0;
-    c.ejercicios.forEach((e,ei)=>{const id=`${bi}-${ci}-${ei}`,s=Math.max(1,parseInt(e.series)||1),t=techOf(e)||{};
-      EX[id]={n:e.n,s,media:t.media||null,tec:t.tec||'',nota:e.nota||''}; ct+=s; cd+=Math.min(+P[id]||0,s);});
-    html += `<section class="circ"><div class="circ-h"><span>${esc(c.nombre)}</span><em>${cd}/${ct} series</em></div>`;
+    c.ejercicios.forEach((e,ei)=>{const id=`${bi}-${ci}-${ei}`,s=Math.max(1,parseInt(e.series)||1);
+      EX[id]={n:e.n,s,media:safeUrl(e.media),tec:e.tec||'',nota:e.nota||''}; ct+=s; cd+=Math.min(+P[id]||0,s);});
+    html += `<section class="circ" data-ids="${c.ejercicios.map((_,ei)=>`${bi}-${ci}-${ei}`).join(',')}"><div class="circ-h"><span>${esc(c.nombre)}</span><em class="cnt">${cd}/${ct} series</em></div>`;
     c.ejercicios.forEach((e,ei)=>{ const id=`${bi}-${ci}-${ei}`; html += exHTML(id,e,+P[id]||0); });
     html += `</section>`;
   }));
@@ -430,37 +440,48 @@ function renderDay(){
   $('day').innerHTML = html;
 
   $('day').querySelectorAll('.dot').forEach(b=>b.onclick=()=>toggleSet(b.dataset.id,+b.dataset.k));
-  $('day').querySelectorAll('.tech').forEach(b=>b.onclick=()=>openMedia(b.dataset.id));
+  $('day').querySelectorAll('.tech').forEach(b=>b.onclick=()=>toggleTech(b.dataset.id));
   $('btnDay').onclick=()=>openReview('day');
   $('btnWeek').onclick=()=>openReview('week');
   $('btnPdf').onclick=printPdf;
   const cw=$('ctaWeek'); if(cw) cw.onclick=()=>openReview('week');
   $('reset').onclick=()=>{ if(confirm(`¿Reiniciar el progreso del ${DAYS_LONG[selDay-1].toLowerCase()}?`)){setP(selDay,{});render()} };
 }
-function render(){
-  if(!R){ $('cliente').textContent='Champion Academy'; $('tipo').textContent='';
-    $('day').innerHTML=`<div class="err"><b>No encontramos esta rutina</b>Revisa que el enlace esté completo o pide uno nuevo a tu entrenador.</div>`;
-    $('fabProg').style.display='none'; return; }
-  renderHeader(); renderTabs(); renderDay();
+function render(){ renderHeader(); renderTabs(); renderDay(); }
+/* Actualiza solo lo que cambió (no reconstruye la pantalla, así el video abierto no se reinicia) */
+function refreshDay(){
+  const P=getP(selDay);
+  document.querySelectorAll('#day .ex').forEach(card=>{
+    const id=card.dataset.id, it=EX[id]; if(!it) return; const n=Math.min(+P[id]||0,it.s);
+    card.classList.toggle('complete',n>=it.s);
+    card.querySelectorAll('.dot').forEach((d,k)=>{ const on=k<n; d.classList.toggle('on',on); d.setAttribute('aria-pressed',on);
+      d.setAttribute('aria-label',it.cardio?'Cardio completado':`Serie ${k+1}${on?' completada':''}`); });
+  });
+  document.querySelectorAll('#day .circ[data-ids]').forEach(sec=>{
+    let cd=0,ct=0; sec.dataset.ids.split(',').forEach(id=>{const it=EX[id]; if(it){ct+=it.s; cd+=Math.min(+P[id]||0,it.s);}});
+    sec.querySelector('.cnt').textContent=`${cd}/${ct} series`;
+  });
+  const st=dayStats(selDay);
+  if($('barFill')){ $('barFill').style.width=st.pct+'%'; $('barTxt').textContent=`${st.d} de ${st.t} series`; $('barPct').textContent=st.pct+'%'; $('bar').setAttribute('aria-valuenow',st.pct); }
+  renderTabs();
 }
-const keepScroll = ()=>{const y=window.scrollY; render(); window.scrollTo(0,y)};
 
 function toggleSet(id,k){
   const it=EX[id]; if(!it) return;
   const date=dateOf(selDay), P=getP(selDay), before=statsOf(date).pct, cur=+P[id]||0;
   P[id] = (cur===k+1)?k:k+1; setP(selDay,P);
   const after=statsOf(date).pct;
-  buzz(10); keepScroll();
+  buzz(10); refreshDay();
   if(after===100&&before<100) toast('¡Día completo! Así se hace, campeón 🔥');
 }
 
 /* ---------------- Frase del resumen ---------------- */
 function hash(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h)}
 function frasePick(seed){
-  const g=generoOf(), pal=FR.pal[g]||FR.pal.base;
+  const g=generoOf(), pal=THEMES[TEMA].frases;
   const lista=FR.lista.filter(f=>!f[2]||f[2]===g), h=hash(seed);
   const f=lista[h%lista.length], c=pal[Math.floor(h/7)%pal.length];
-  return {src:`frases/${f[0]}-${c}.webp`,alt:f[1]};
+  return {src:`${FRASES_BASE}${f[0]}/${f[0]}-${c}.png`,alt:f[1]};
 }
 const PHRASES = {
   full:["Eso no es suerte, es disciplina. Cada serie que terminaste te acerca a la versión de ti que quieres ver.","Cumpliste con todo. Los campeones no esperan motivación: se presentan, y tú te presentaste."],
@@ -580,23 +601,16 @@ function printPdf(){
 
 /* ---------------- Modales ---------------- */
 function openModal(id){ $(id).classList.add('open'); }
-function closeModal(m){ m.classList.remove('open'); if(m.id==='mdmodal') $('md').innerHTML=''; }
+function closeModal(m){ m.classList.remove('open'); }
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) closeModal(m); }));
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal.open').forEach(closeModal); });
 $('rvClose').onclick=()=>closeModal($('rvmodal'));
 $('pgClose').onclick=()=>closeModal($('pgmodal'));
-$('mdClose').onclick=()=>closeModal($('mdmodal'));
 $('fabProg').onclick=openProgress;
 
 /* ---------------- Inicio ---------------- */
-async function getJSON(url){ const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return r.json(); }
-(async function init(){
-  const u=params.get('u');
-  try{ const c=await getJSON('catalogo.json'); (c.ejercicios||[]).forEach(e=>{CAT[norm(e.n)]=e}); }catch(e){}
-  if(u){ try{ R=await getJSON(`rutinas/${encodeURIComponent(u)}.json`); }catch(e){ R=null; } }
-  else{ try{ R=await getJSON('rutina.json'); }catch(e){ R=DEFAULT; } }
-  render();
-})();
+document.querySelector('meta[name="theme-color"]').setAttribute('content','#0c0c0e');
+render();
 </script>
 </body>
 </html>
