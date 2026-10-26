@@ -339,7 +339,9 @@ let selDay = todayNum;
 
 /* ---------------- Almacenamiento ----------------
    Una entrada por usuario + fecha real: { idEjercicio: seriesHechas } */
-const keyOf = date=>`ca3:${USER}:${ymd(date)}`;
+/* v4: arranque limpio en producción; se descartan los registros de prueba (ca3) */
+try{ Object.keys(localStorage).filter(k=>k.startsWith('ca3:')).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+const keyOf = date=>`ca4:${USER}:${ymd(date)}`;
 const readP = date=>{try{return JSON.parse(localStorage.getItem(keyOf(date))||'{}')}catch(e){return {}}};
 const writeP = (date,p)=>{try{localStorage.setItem(keyOf(date),JSON.stringify(p))}catch(e){}};
 const getP = n=>readP(dateOf(n));
@@ -539,7 +541,7 @@ function weekPct(mon){
   return {pct:t?Math.round(d/t*100):0,t,d};
 }
 function allDates(){
-  const pre=`ca3:${USER}:`, out=[];
+  const pre=`ca4:${USER}:`, out=[];
   try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i);
     if(k&&k.startsWith(pre)&&/^\d{4}-\d{2}-\d{2}$/.test(k.slice(pre.length))){ const [y,m,d]=k.slice(pre.length).split('-').map(Number); out.push(new Date(y,m-1,d)); } } }catch(e){}
   return out.sort((a,b)=>a-b);
