@@ -238,6 +238,25 @@ body:has(.modal.open) .fab-prog{display:none}
 @keyframes spLoad{to{transform:none}}
 @media (prefers-reduced-motion:reduce){#splash *{animation:none!important}#splash .sp-halo{opacity:.5}#splash .sp-bar i{transform:none}}
 @media print{#splash{display:none!important}}
+
+/* ===== Premium refinements ===== */
+:root{--copper:#b87333}
+.dots{gap:10px}
+.dot{width:48px;height:48px;border-color:#4a4a52;color:#b5b5bd}
+.circ-h{background:var(--bg2);color:var(--gold2);border-bottom:1px solid var(--gold-dim)}
+.circ-h em{background:#ffffff14;color:var(--text)}
+.ex.complete{padding-block:10px}
+.ex.complete .note{display:none}
+.fab-prog{animation:none}
+.fab-soc.ig{width:46px;height:46px;padding:0;justify-content:center;background:var(--bg2);color:var(--gold2);border:1px solid var(--gold-dim)}
+.fab-ig-t{display:none}
+.fab-ig-ico{background:none;width:auto;height:auto;color:var(--gold2)}
+.pill{border-radius:16px}
+.tab,.week-t,.reps small,.wk-l,.tiles small{font-size:.72rem}
+.reps small{color:#b5b5bd}
+.tab.today::after{font-size:.62rem;border-color:var(--copper);color:var(--copper)}
+.tab{min-height:54px}
+.sheet .btn.out{position:sticky;bottom:0;background:var(--card)}
 </style>
 </head>
 <body>
@@ -297,7 +316,7 @@ const CONFIG = {"cliente": "Alfredo Castillo", "genero": "hombre", "programa": "
 
 /* ---------------- Temas de color ---------------- */
 const THEMES = {
-  dorado:{gold:'#e8b923',gold2:'#f6d86a',dim:'#8a6f14',soft:'#2a2410',ink:'#201a00',glow:'#e8b92388',tint:'#fbf3d3',deep:'#7a5c00',deep2:'#5c4700',deep3:'#b88a00',frases:['D1','D2']},
+  dorado:{gold:'#d4a53c',gold2:'#ecd08a',dim:'#7a5c1e',soft:'#2a2410',ink:'#1c1606',glow:'#d4a53c66',tint:'#fbf3d3',deep:'#7a5c00',deep2:'#5c4700',deep3:'#b88a00',frases:['D1','D2']},
   plata:{gold:'#c9ccd1',gold2:'#eceef1',dim:'#6d7077',soft:'#242528',ink:'#141416',glow:'#c9ccd188',tint:'#eef0f2',deep:'#4a4d54',deep2:'#3a3c42',deep3:'#6d7077',frases:['P1']},
   rosa:{gold:'#ee2a7b',gold2:'#ff7ab2',dim:'#8d1a4b',soft:'#2b1020',ink:'#1f0612',glow:'#ee2a7b88',tint:'#fde4ef',deep:'#9c1252',deep2:'#7a0f40',deep3:'#c2185b',frases:['R1','R2']},
   morado:{gold:'#b04fd6',gold2:'#d79bf0',dim:'#5e2a78',soft:'#22122b',ink:'#14061c',glow:'#b04fd688',tint:'#f1e2f9',deep:'#6e2a8f',deep2:'#561f72',deep3:'#8a3fb0',frases:['M1']}
@@ -447,7 +466,7 @@ function renderDay(){
 
   const lastDay=selDay===7;   // domingo: el botón principal cierra la semana
   html += `<div class="actions">
-    <button class="btn gold" id="btnMain">${lastDay?'Cierra tu semana':'Terminar este día'}</button>
+    <button class="btn gold" id="btnMain">${lastDay?'Cierra tu semana':'Ver resumen del día'}</button>
     <button class="btn" id="btnPdf">⬇ Descargar rutina en PDF</button>
     <button class="btn ghost" id="reset">Reiniciar este día</button></div>`;
   $('day').innerHTML = html;
@@ -709,7 +728,7 @@ $('fabProg').onclick=openProgress;
     const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'}));document.head.appendChild(l);
   }catch(e){}
   const sp=$('splash'); $('spName').textContent=R.cliente||'';
-  const SPLASH_MS=3000; // la pantalla de inicio dura 3 s exactos, contados desde que se pinta
+  const SPLASH_MS=1800; // la pantalla de inicio dura 3 s exactos, contados desde que se pinta
   const hide=()=>{sp.classList.add('out');setTimeout(()=>sp.remove(),600)};
   const t0=typeof window.__splashT0==='number'?window.__splashT0:performance.now();
   setTimeout(hide,Math.max(0,SPLASH_MS-(performance.now()-t0)));
